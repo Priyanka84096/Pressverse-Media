@@ -1357,6 +1357,32 @@ nav a:not(.btn-primary-sm):hover::after {
 
 .pricing-card h3 {
     font-size: 2rem;
+    margin: 0;
+}
+
+.pricing-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 80px;
+    margin-bottom: 15px;
+    min-height: 60px;
+}
+
+.pricing-primary-logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80px;
+    width: auto;
+    padding: 4px;
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    object-fit: contain;
 }
 
 .pricing-small-logo:hover {
@@ -1383,6 +1409,38 @@ nav a:not(.btn-primary-sm):hover::after {
     font-size: 1rem;
     color: var(--text-dark);
     font-weight: 400;
+}
+
+.pricing-body-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.pricing-features-wrap {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pricing-logos-wrap {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .features-list {
@@ -1946,6 +2004,24 @@ footer {
         padding: 40px 20px;
     }
 
+    .pricing-logos-wrap {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .pricing-primary-logo {
+        height: 70px;
+    }
+
+    .pricing-header-row {
+        padding: 0 60px;
+    }
+
+    .pricing-card h3 {
+        font-size: 1.6rem;
+    }
+
     .modal-content .form-wrapper {
         padding: 40px 20px;
     }
@@ -1970,7 +2046,10 @@ footer {
     }
 
     .sticky-book {
-        width: 90%;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        bottom: 20px;
+        width: 30%;
         text-align: center;
     }
 }
@@ -2163,5 +2242,40 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
+    }
+
+    .pricing-card {
+        padding: 30px 15px;
+    }
+
+    .pricing-primary-logo {
+        height: 55px;
+    }
+
+    .pricing-header-row {
+        padding: 0 50px;
+    }
+
+    .pricing-logos-wrap {
+        padding: 8px;
+        gap: 5px;
+    }
+
+    .pricing-body-split {
+        gap: 20px;
+    }
+
+    .pricing-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .sticky-book {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        bottom: 15px;
+    }
+
+    .price {
+        font-size: 3rem;
     }
 }
