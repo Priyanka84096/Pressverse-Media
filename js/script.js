@@ -1,15 +1,11 @@
 // Dummy data for profiles
 const profiles = [
-    // { name: "Rahul Sharma", role: "Founder & CEO", company: "TechNova India", img: "https://randomuser.me/api/portraits/men/10.jpg" },
-    // { name: "Priya Desai", role: "Managing Director", company: "EcoSolutions", img: "https://randomuser.me/api/portraits/women/10.jpg" },
-    // { name: "Amit Patel", role: "Chief Innovator", company: "NextGen AI", img: "https://randomuser.me/api/portraits/men/22.jpg" },
     { name: "Sneha Reddy", role: "Co-Founder", company: "HealthPlus", img: "https://randomuser.me/api/portraits/women/45.jpg" },
     { name: "Vikram Singh", role: "CEO", company: "FinTech Pro", img: "https://randomuser.me/api/portraits/men/12.jpg" },
     { name: "Anjali Gupta", role: "Director", company: "EduSpark", img: "https://randomuser.me/api/portraits/women/70.jpg" },
     { name: "Rohan Mehta", role: "Venture Capitalist", company: "Growth Fund", img: "https://randomuser.me/api/portraits/men/9.jpg" },
     { name: "Kavita Rao", role: "President", company: "Women In Tech", img: "https://randomuser.me/api/portraits/women/36.jpg" },
     { name: "Siddharth Jain", role: "CEO", company: "Urban Builders", img: "https://randomuser.me/api/portraits/men/40.jpg" },
-    // { name: "Neha Kapoor", role: "CMO", company: "BrandElevate", img: "https://randomuser.me/api/portraits/women/42.jpg" },
     { name: "Aditya Verma", role: "CTO", company: "CyberSafe", img: "https://randomuser.me/api/portraits/men/62.jpg" },
     { name: "Pooja Iyer", role: "Founder", company: "GreenEarth", img: "https://randomuser.me/api/portraits/women/71.jpg" }
 ];
@@ -36,16 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const textContainers = document.querySelectorAll('.js-premium-container');
 
     if (splitLefts.length && splitRights.length && window.gsap) {
-        gsap.set(splitLefts, { x: -100, opacity: 0, display: "inline-block" });
-        gsap.set(splitRights, { x: 100, opacity: 0, display: "inline-block" });
+        gsap.set([...splitLefts, ...splitRights], { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", display: "inline-block", y: 40, opacity: 1 });
 
         gsap.to([...splitLefts, ...splitRights], {
-            x: 0,
-            opacity: 1,
-            duration: 1.6,
-            ease: "back.out(1.5)",
+            clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
             delay: 0.2,
-            stagger: 0.1
+            stagger: 0.15
         });
 
         gsap.to(textContainers, {
@@ -175,12 +170,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (elem.classList.contains('stagger-3')) delay = 0.45;
             if (elem.classList.contains('stagger-4')) delay = 0.6;
             if (elem.classList.contains('stagger-5')) delay = 0.75;
+            if (elem.classList.contains('stagger-6')) delay = 0.90;
 
             // Only trigger initial if in hero, else use scrolltrigger
             if (elem.closest('.hero')) {
+                let heroDelay = delay * (100 / 150); // Scale 150ms stagger to 100ms
                 gsap.fromTo(elem,
-                    { opacity: 0, y: 30 },
-                    { opacity: 1, y: 0, duration: 0.8, delay: delay, ease: "power3.out" }
+                    { opacity: 0, y: 20, filter: "blur(8px)" },
+                    { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.0, delay: heroDelay, ease: "power2.out" }
                 );
             } else {
                 gsap.fromTo(elem,
@@ -196,6 +193,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
         });
+
+        // Floating media cards reveal & Hero Counter
+        const floatingCards = document.querySelectorAll('.hero-floating-card');
+        if (floatingCards.length > 0) {
+            gsap.fromTo(floatingCards,
+                { opacity: 0, scale: 0.8, filter: "blur(10px)", y: 30 },
+                { opacity: 1, scale: 1, filter: "blur(0px)", y: 0, duration: 1.2, delay: 0.8, stagger: 0.2, ease: "back.out(1.5)" }
+            );
+        }
+
+        const heroCounter = document.getElementById('hero-counter');
+        if (heroCounter) {
+            // Wait for floating cards reveal
+            setTimeout(() => {
+                let targetVal = 15; // e.g. 15M+
+                gsap.to(heroCounter, {
+                    innerHTML: targetVal,
+                    duration: 2,
+                    snap: { innerHTML: 1 },
+                    ease: "power2.out"
+                });
+            }, 1000);
+        }
 
         gsap.utils.toArray('.fade-left').forEach((elem) => {
             gsap.fromTo(elem,
@@ -335,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('is-active');
             navMenu.classList.toggle('active');
-            
+
             // Prevent background scrolling
             if (navMenu.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
@@ -369,11 +389,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
+
             // Close all items
             faqItems.forEach(faq => {
                 faq.classList.remove('active');
-                if(faq.querySelector('.faq-answer')) {
+                if (faq.querySelector('.faq-answer')) {
                     faq.querySelector('.faq-answer').style.maxHeight = null;
                 }
             });
@@ -382,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isActive) {
                 item.classList.add('active');
                 const answer = item.querySelector('.faq-answer');
-                if(answer) {
+                if (answer) {
                     answer.style.maxHeight = answer.scrollHeight + "px";
                 }
             }
@@ -403,6 +423,55 @@ document.addEventListener("DOMContentLoaded", () => {
                     end: "bottom top",
                     scrub: true
                 }
+            });
+        });
+    }
+
+    // Hero Image 3D Parallax Tilt & Floating Cards Parallax
+    const heroImageTilt = document.getElementById('hero-image-tilt');
+    const parallaxCards = document.querySelectorAll('.js-parallax-card');
+    
+    if (heroImageTilt || parallaxCards.length > 0) {
+        document.addEventListener('mousemove', (e) => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            
+            const xOffset = e.clientX - window.innerWidth / 2;
+            const yOffset = e.clientY - window.innerHeight / 2;
+            
+            // Hero Image Tilt
+            if (heroImageTilt) {
+                const rect = heroImageTilt.getBoundingClientRect();
+                const x = e.clientX - (rect.left + rect.width / 2);
+                const y = e.clientY - (rect.top + rect.height / 2);
+                
+                const maxTilt = 4;
+                const tiltX = -(y / (window.innerHeight / 2)) * maxTilt;
+                const tiltY = (x / (window.innerWidth / 2)) * maxTilt;
+                
+                const boundedTiltX = Math.max(-maxTilt, Math.min(maxTilt, tiltX));
+                const boundedTiltY = Math.max(-maxTilt, Math.min(maxTilt, tiltY));
+                
+                const scale = heroImageTilt.matches(':hover') ? 1.02 : 1;
+                heroImageTilt.style.transform = `perspective(1000px) scale(${scale}) rotateX(${boundedTiltX}deg) rotateY(${boundedTiltY}deg)`;
+            }
+            
+            // Floating Cards Parallax
+            parallaxCards.forEach(card => {
+                const speed = parseFloat(card.getAttribute('data-parallax')) || 0.05;
+                const xMove = xOffset * speed;
+                const yMove = yOffset * speed;
+                // Preserve existing position/transform if possible, but simpler to just apply translate
+                card.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+        
+        // Reset
+        document.addEventListener('mouseleave', () => {
+            if (heroImageTilt) {
+                heroImageTilt.style.transform = `perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)`;
+            }
+            parallaxCards.forEach(card => {
+                card.style.transform = `translate(0px, 0px)`;
             });
         });
     }
