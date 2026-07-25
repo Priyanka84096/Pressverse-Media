@@ -348,10 +348,10 @@ header {
     transition: var(--transition);
 }
 
-header.scrolled {
+/* header.scrolled {
     background: rgba(2, 12, 27, 0.8);
     padding: 15px 0;
-}
+} */
 
 .nav-container {
     display: flex;
@@ -362,6 +362,7 @@ header.scrolled {
 .logo {
     display: flex;
     align-items: center;
+    margin-left: 8px;
 }
 
 .logo img {
