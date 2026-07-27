@@ -2350,7 +2350,7 @@ footer {
     }
 
     .stat-item h3 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
 
     .benefits-grid {
@@ -2994,8 +2994,8 @@ footer {
     }
 
     .hero-content {
-        padding: 20px 12px 25px !important;
-        margin: 10px auto 15px !important;
+        padding: 18px 12px 6px !important;
+        margin: 10px auto 0px !important;
         width: 100% !important;
         max-width: 100% !important;
         display: flex !important;
