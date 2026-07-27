@@ -300,51 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    // Modal Logic
-    const formModal = document.getElementById('form-modal');
-    const closeBtn = document.querySelector('.close-modal');
-
-    window.openModal = function () {
-        if (formModal) {
-            formModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-    };
-
-    window.closeModal = function () {
-        if (formModal) {
-            formModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    };
-
-    // Intercept all #lead-form links
-    const leadLinks = document.querySelectorAll('a[href="#lead-form"]');
-    leadLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.openModal();
-        });
-    });
-
-    // Close on X click
-    if (closeBtn) {
-        closeBtn.addEventListener('click', window.closeModal);
-    }
-
-    // Close on outside click
-    window.addEventListener('click', (e) => {
-        if (e.target === formModal) {
-            window.closeModal();
-        }
-    });
-
-    // Close on Esc key
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && formModal && formModal.classList.contains('active')) {
-            window.closeModal();
-        }
-    });
 
     // Hamburger Menu Logic
     const menuToggle = document.getElementById('mobile-menu');
@@ -409,23 +364,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Parallax for Gallery if ScrollTrigger is available
-    if (window.gsap && window.ScrollTrigger) {
-        gsap.utils.toArray('.gs-parallax').forEach(parallaxElement => {
-            const speed = parallaxElement.getAttribute('data-speed') || 1;
-            // Native-feel parallax movement based on scroll
-            gsap.to(parallaxElement, {
-                y: () => (1 - parseFloat(speed)) * 100, // Move at slightly different rates
-                ease: "none",
-                scrollTrigger: {
-                    trigger: parallaxElement,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-        });
-    }
 
     // Hero Image 3D Parallax Tilt & Floating Cards Parallax
     const heroImageTilt = document.getElementById('hero-image-tilt');
