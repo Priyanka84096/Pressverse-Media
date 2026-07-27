@@ -454,7 +454,7 @@ nav a:not(.btn-primary-sm):hover::after {
 .headline-wrapper {
     position: relative;
     display: inline-block;
-    padding: 10px 20px 10px 2px;
+    padding: 6px 20px 6px 2px;
     /* margin-bottom: 15px; */
 }
 
@@ -2979,7 +2979,7 @@ footer {
 /* Mobile Screens (<= 767px) - Balanced Responsive Scale: Readable Content & Proportional Mockup */
 @media (max-width: 767px) {
     .hero {
-        padding-top: 105px !important;
+        padding-top: 90px !important;
         padding-bottom: 35px !important;
         min-height: auto !important;
         height: auto !important;
@@ -2994,8 +2994,8 @@ footer {
     }
 
     .hero-content {
-        padding: 18px 12px 6px !important;
-        margin: 10px auto 0px !important;
+        padding: 12px 12px 6px !important;
+        margin: 1px auto 0px !important;
         width: 100% !important;
         max-width: 100% !important;
         display: flex !important;
