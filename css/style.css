@@ -421,7 +421,7 @@ nav a:not(.btn-primary-sm):hover::after {
     text-align: left;
     position: relative;
     z-index: 2;
-    padding: 0px 30px 5px 30px;
+    padding: 0px 30px 20px 30px;
 }
 
 .hero-content {
@@ -454,7 +454,7 @@ nav a:not(.btn-primary-sm):hover::after {
 .headline-wrapper {
     position: relative;
     display: inline-block;
-    padding: 10px 20px 14px 2px;
+    padding: 10px 20px 10px 2px;
     /* margin-bottom: 15px; */
 }
 
@@ -512,7 +512,8 @@ nav a:not(.btn-primary-sm):hover::after {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
     animation: subtleBreathe 4s ease-in-out infinite;
 }
 
@@ -3014,7 +3015,7 @@ footer {
         line-height: 1.15 !important;
         letter-spacing: -0.5px !important;
         margin-top: 6px !important;
-        margin-bottom: 14px !important;
+        margin-bottom: 12px !important;
     }
 
     .sub-headline {
@@ -3299,8 +3300,8 @@ footer {
     }
 
     .hero-content {
-        padding: 15px 8px 20px !important;
-        margin: 5px auto 10px !important;
+        padding: 13px 8px 5px !important;
+        margin: 5px auto 2px !important;
         width: 100% !important;
         max-width: 100% !important;
     }
@@ -3310,7 +3311,7 @@ footer {
         line-height: 1.15 !important;
         letter-spacing: -0.5px !important;
         margin-top: 4px !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 4px !important;
     }
 
     .sub-headline,
@@ -3322,7 +3323,7 @@ footer {
     .hero-desc {
         font-size: clamp(0.98rem, 3.8vw, 1.12rem) !important;
         line-height: 1.55 !important;
-        margin: 10px auto 20px !important;
+        margin: 6px auto 20px !important;
         padding: 0 4px !important;
         max-width: 98% !important;
     }
